@@ -35,7 +35,8 @@ WHERE salary > 2000 AND months < 10
 ORDER BY employee_id ASC;
 
 --Bài tập ex9
-
+SELECT product_id from Products
+WHERE low_fats = 'Y' and recyclable = 'Y';
 
 --Bài tập ex10
 SELECT name from Customer
@@ -51,7 +52,13 @@ WHERE viewer_id = author_id
 ORDER BY id ASC;
 
 --Bài tập ex13
+SELECT * FROM parts_assembly
+WHERE finish_date is NULL;
 
 --Bài tập ex14
+select * from lyft_drivers
+WHERE yearly_salary <= 30000 or yearly_salary >= 70000;
 
 --Bài tập ex15
+select * from uber_advertising
+where year = 2019 and money_spent > 100000;
