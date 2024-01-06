@@ -35,16 +35,20 @@ WHERE salary > 2000 AND months < 10
 ORDER BY employee_id ASC;
 
 --Bài tập ex9
+
+
+--Bài tập ex10
 SELECT name from Customer
 WHERE referee_id <> 2 OR referee_id IS null;
 
---Bài tập ex10
+--Bài tập ex11
 SELECT name, population, area FROM World
 WHERE area >= 3000000 OR population >= 25000000;
 
---Bài tập ex11
-
 --Bài tập ex12
+SELECT DISTINCT author_id as id from Views
+WHERE viewer_id = author_id
+ORDER BY id ASC;
 
 --Bài tập ex13
 
