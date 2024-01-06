@@ -30,10 +30,17 @@ SELECT name FROM Employee
 ORDER BY name ASC;
 
 --Bài tập ex8
+SELECT name FROM Employee
+WHERE salary > 2000 AND months < 10
+ORDER BY employee_id ASC;
 
 --Bài tập ex9
+SELECT name from Customer
+WHERE referee_id <> 2 OR referee_id IS null;
 
 --Bài tập ex10
+SELECT name, population, area FROM World
+WHERE area >= 3000000 OR population >= 25000000;
 
 --Bài tập ex11
 
