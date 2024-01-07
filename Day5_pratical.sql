@@ -32,10 +32,20 @@ GROUP by user_id
 Having COUNT (post_id) > 1
 
 --Bài tập ex7
-
+SELECT card_name,
+MAX(issued_amount) - MIN(issued_amount) as difference
+FROM monthly_cards_issued
+GROUP BY card_name
+order by difference DESC
 
 --Bài tập ex8
-
+SELECT manufacturer,
+Count (drug) as drug_count,
+ABS(sum(total_sales - cogs)) as total_loss
+FROM pharmacy_sales
+WHERE total_sales < cogs
+GROUP BY manufacturer
+order by total_loss DESC
 
 --Bài tập ex9
 
