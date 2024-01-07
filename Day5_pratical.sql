@@ -48,12 +48,26 @@ GROUP BY manufacturer
 order by total_loss DESC
 
 --Bài tập ex9
-
+SELECT * FROM Cinema
+WHERE id % 2 <>0
+AND description not like '%boring%'
+order by rating desc
 
 --Bài tập ex10
-
+SELECT teacher_id, 
+COUNT(DISTINCT subject_id) AS cnt
+FROM Teacher
+GROUP BY teacher_id;
 
 --Bài tập ex11
-
+SELECT user_id, 
+COUNT (follower_id) as followers_count
+from Followers
+Group by user_id
+Order by user_id ASC
 
 --Bài tập ex12
+Select class
+from Courses
+Group by Class
+Having count (student) >= 5
