@@ -35,12 +35,23 @@ limit 2
 
 --Bài tập ex6
 
+select tweet_id
+from Tweets
+where length (content) > 15
 
 --Bài tập ex7
-
+select activity_date as day,
+count (distinct user_id) as active_users
+from Activity
+where (activity_date <= '2019-07-27' and activity_date > '2019-06-27')
+group by (activity_date)
 
 --Bài tập ex8
-
+select id, joining_date,
+count (id)
+from employees
+where (joining_date >= '2022-01-01' and joining_date <= '2022-07-01') 
+group by id, joining_date
 
 --Bài tập ex9
 
