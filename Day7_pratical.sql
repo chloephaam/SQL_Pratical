@@ -10,7 +10,11 @@ from Users
 order by user_id
 
 --Bài tập ex3
-
+SELECT manufacturer,
+'$' || Round (sum (total_sales)/1000000) || ' ' || 'million' as total_sales
+FROM pharmacy_sales
+GROUP BY manufacturer
+Order by total_sales DESC, manufacturer
 
 --Bài tập ex4
 
