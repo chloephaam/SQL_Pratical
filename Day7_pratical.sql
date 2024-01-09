@@ -54,7 +54,12 @@ where (joining_date >= '2022-01-01' and joining_date <= '2022-07-01')
 group by id, joining_date
 
 --Bài tập ex9
-
+select position ('a' in first_name) 
+from worker
+where first_name ='Amitah'
 
 --Bài tập ex10
-
+select 
+substring (title,(length (winery)+2), 4)
+from winemag_p2
+where country = 'Macedonia'
