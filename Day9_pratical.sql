@@ -23,6 +23,8 @@ end)/ count(case_id))*100,1) as call_percentage
 FROM callers;
 
 --Bài tập ex4
-
+select name
+from Customer
+where coalesce(referee_id,0)!=2
 
 --Bài tập ex5
