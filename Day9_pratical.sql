@@ -9,10 +9,18 @@ end) as 	mobile_views
 FROM viewership;
 
 --Bài tập ex2
-
+select x, y, z, 
+case 
+    when x + y > z and x + z > y and y + z > x then 'Yes' else 'No'
+end as  triangle
+from triangle;
 
 --Bài tập ex3
-
+SELECT 
+ROUND((Sum(case 
+  when call_category = 'n/a' or call_category IS NULL then 1 else 0
+end)/ count(case_id))*100,1) as call_percentage
+FROM callers;
 
 --Bài tập ex4
 
