@@ -8,15 +8,26 @@ where continent is not NULL
 group by t2.continent
 
 --Bài tập ex2
-SELECT
-COUNT(DISTINCT t2.email_id) / COUNT(DISTINCT t1.email_id) AS confirm_rate
-FROM emails as t1
-LEFT JOIN texts as t2 
-ON t1.email_id = t2.email_id
-WHERE t2.signup_action = 'Confirmed';
+select
+count(distinct t2.email_id) / count(distinct t1.email_id) AS confirm_rate
+from emails as t1
+left join texts as t2 
+on t1.email_id = t2.email_id
+where t2.signup_action = 'Confirmed';
 
 --Bài tập ex3
-
+select t2..age_bucket, 
+round(100.0 * sum(case
+    when t1.activity_type = 'send' then t1.time_spent alse 0 
+end)/ Ssum(t1.time_spent), 2) as send_perc, 
+round(100.0 * sum(case 
+    when t1.activity_type = 'open' then t1.time_spent else 0 
+end)/ sum(t1.time_spent), 2) AS open_perc
+from activities as t1
+inner join age_breakdown AS t2 
+on t1.user_id = t2.user_id 
+where t1.activity_type in ('send', 'open') 
+group by t2.age_bucket;
 
 --Bài tập ex4
 
