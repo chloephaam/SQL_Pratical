@@ -144,3 +144,18 @@ order by total_revenue desc
 limit 1;
 
 --Q8
+select ci.city || ',' || ' '|| co.country as city_country,
+sum(p.amount) as total_revenue
+from public.payment as p
+left join public.customer as c
+on p.customer_id=c.customer_id
+left join public.address as a
+on c.address_id=a.address_id
+left join public.city as ci
+on a.city_id=ci.city_id
+left join public.country as co
+on ci.country_id=co.country_id
+group by ci.city, co.country
+order by total_revenue desc
+limit 1;
+=> "Cape Coral, United States" 221.55???
