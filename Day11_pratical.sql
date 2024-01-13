@@ -53,6 +53,12 @@ left join Orders as t2
 on t1.product_id = t2.product_id
 where t2.order_date >= '2020-02-01' and t2.order_date < '2020-03-01'
 group by t1.product_id, t1.product_name
-having sum(t2.unit) >= 100;
+having sum(t2.unit) >= 100
 
 --Bài tập ex7
+select p.page_id
+from pages as t1
+left join page_likes t2 
+on t1.page_id = t2.page_id
+where t2.page_id is NULL
+order by p.page_id ASC
