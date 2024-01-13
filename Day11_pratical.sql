@@ -8,12 +8,11 @@ where continent is not NULL
 group by t2.continent
 
 --Bài tập ex2
-select
-count(distinct t2.email_id) / count(distinct t1.email_id) AS confirm_rate
-from emails as t1
-left join texts as t2 
-on t1.email_id = t2.email_id
-where t2.signup_action = 'Confirmed'
+select round(count(t.email_id) / cast(count(distinct e.email_id) as numeric),2) as activation_rate
+from emails as e
+left join texts as t 
+on e.email_id = t.email_id
+and t.signup_action = 'Confirmed'
 
 --Bài tập ex3
 select t2.age_bucket, 
@@ -30,12 +29,14 @@ where t1.activity_type in ('send', 'open')
 group by t2.age_bucket
 
 --Bài tập ex4
-select count(distinct t1.customer_id) AS supercloud_customers
-from customer_contracts as t1
-left join products as t2 
-on t1.product_id = t2.product_id
-group by t1.customer_id
-having count(distinct t2.product_category) = (select count(distinct product_category) from products)
+select c.customer_id
+from customer_contracts as c
+left join products as p 
+on c.product_id = p.product_id
+left join products as pr 
+on p.product_category = pr.product_category
+group by c.customer_id
+having count(distinct p.product_category) = count(distinct pr.product_category)
 
 --Bài tập ex5
 select e1.employee_id, e1.name, count(e2.employee_id) as reports_count, round(avg(e2.age)) as average_age
