@@ -38,8 +38,21 @@ group by t1.customer_id
 having count(distinct t2.product_category) = (select count(distinct product_category) from products)
 
 --Bài tập ex5
-
+select e1.employee_id, e1.name, count(e2.employee_id) as reports_count, round(avg(e2.age)) as average_age
+from Employees as e1 
+left join Employees as e2
+on e1.employee_id = e2.reports_to
+group by e1.employee_id, e1.name
+having count(e2.employee_id)>0
+order by e1.employee_id
 
 --Bài tập ex6
+select t1.product_name, sum(t2.unit) as unit
+from Products as t1
+left join Orders as t2 
+on t1.product_id = t2.product_id
+where t2.order_date >= '2020-02-01' and t2.order_date < '2020-03-01'
+group by t1.product_id, t1.product_name
+having sum(t2.unit) >= 100;
 
 --Bài tập ex7
