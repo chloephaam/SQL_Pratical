@@ -62,3 +62,85 @@ left join page_likes t2
 on t1.page_id = t2.page_id
 where t2.page_id is NULL
 order by p.page_id ASC
+
+--MID-course test Q1
+-- Tạo danh sách tất cả chi phí thay thế khác nhau của các film
+select distinct replacement_cost,
+from film
+    
+--Tìm chi phí thay thế thấp nhất
+select min (replacement_cost) as lowest_replacement_cost
+from film
+
+--Q2
+select
+case
+    when replacement_cost >= 9.99 and replacement_cost <= 19.99 then 'low'
+    when replacement_cost >= 20.00 and replacement_cost <= 24.99 then 'medium'
+    when replacement_cost >= 25.00 and replacement_cost <= 29.99 then 'high'
+end as cost_range,
+count(*) as film_count
+from film
+group by cost_range;
+
+--Q3
+--Lọc kết quả để chỉ các phim trong danh mục 'Drama' hoặc 'Sports'
+select f.title as film_title, f.length, c.name as category_name
+from film as f
+left join public.film_category as fc 
+on f.film_id = fc.film_id
+left join public.category as c 
+on fc.category_id = c.category_id
+where c.name in ('Drama', 'Sports')
+order by f.length desc;
+
+--Phim dài nhất thuộc thể loại nào và dài bao nhiêu?
+select c.name as category_name, max(f.length) as max_length
+from public.film as f
+left join public.film_category as fc 
+on f.film_id = fc.film_id
+join public.category as c 
+on fc.category_id = c.category_id
+where c.name in ('Drama', 'Sports')
+group by c.name;
+
+--Q4
+select c.name as category_name, count(f.title) as movie_count
+from public.category as c
+left join public.film_category as fc 
+on c.category_id = fc.category_id
+left join public.film as f 
+on fc.film_id = f.film_id
+group by c.name
+order by movie_count desc;
+
+--Q5
+select a.first_name, a.last_name, count(fa.film_id) as movie_count
+from public.actor as a
+left join public.film_actor as fa 
+on a.actor_id = fa.actor_id
+group by a.first_name, a.last_name
+order by movie_count desc;
+
+--Q6
+select
+count(a.address_id) as address_count
+from public.address as a
+left join public.customer as c 
+on a.address_id = c.address_id
+where c.customer_id is null;
+
+--Q7
+select ci.city, sum(p.amount) as total_revenue
+from public.payment as p
+left join public.customer as c
+on p.customer_id=c.customer_id
+left join public.address as a
+on c.address_id=a.address_id
+left join public.city as ci
+on a.city_id=ci.city_id
+group by ci.city
+order by total_revenue desc
+limit 1;
+
+--Q8
