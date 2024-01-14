@@ -39,9 +39,25 @@ on p1.page_id = p2.page_id
 Where p2.page_id is NULL;
 
 --Bài tập ex5
-
+select 
+extract(month from event_date) as month,
+count(distinct user_id) as monthly_active_users
+from user_actions
+where 
+extract(month from event_date) = 7 and extract(year from event_date) = 2022
+group by extract(month from event_date)
+order by extract(month from event_date);
 
 --Bài tập ex6
+select 
+extract(year from trans_date)|| '-' || extract(month from trans_date) as month,
+country,
+count(*) as trans_count,
+sum(case when state = 'approved' then 1 else 0 end) as approved_count,
+sum(amount) as trans_total_amount,
+sum(case when state = 'approved' then amount else 0 end) as approved_total_amount
+from transactions
+group by month, country;
 
 
 --Bài tập ex7
