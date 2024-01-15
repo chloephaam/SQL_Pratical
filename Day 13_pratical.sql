@@ -136,4 +136,4 @@ select requester_id as id, count(accepter_id) as num
 from t1
 group by 1
 order by 2 DESC
-limit 1
+limit 1  
