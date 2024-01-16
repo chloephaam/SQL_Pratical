@@ -40,14 +40,18 @@ on p1.page_id = p2.page_id
 Where p2.page_id is NULL
 
 --Bài tập ex5
-select 
-extract(month from event_date) as month,
-count(distinct user_id) as monthly_active_users
+with monthly_actions as 
+(select distinct user_id
 from user_actions
-where 
-extract(month from event_date) in (6, 7) and extract(year from event_date) = 2022
-group by extract(month from event_date)
-order by extract(month from event_date)
+where extract(month from event_date) = 7 and extract(year from event_date) = 2022)
+
+select 7 as month,
+count(user_id) as monthly_active_users
+from monthly_actions
+where user_id in
+(select distinct user_id
+from user_actions
+where extract(month from event_date) = 6 and extract(year from event_date) = 2022)
 
 --Bài tập ex6
 select 
