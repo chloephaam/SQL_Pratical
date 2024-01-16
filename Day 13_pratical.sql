@@ -22,6 +22,7 @@ WHERE
 count (distinct t2.product)
 from tb_total_spend_product as t2
 where t1.category=t2.category and t1.total_spend <= t2.total_spend) <=2
+order by category, total_spend DESC 
 
 --Bài tập ex3
 select count (policy_holder_id) as member_count
