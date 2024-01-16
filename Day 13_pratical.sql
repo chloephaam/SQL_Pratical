@@ -45,7 +45,7 @@ extract(month from event_date) as month,
 count(distinct user_id) as monthly_active_users
 from user_actions
 where 
-extract(month from event_date) = 7 and extract(year from event_date) = 2022
+extract(month from event_date) in (6, 7) and extract(year from event_date) = 2022
 group by extract(month from event_date)
 order by extract(month from event_date)
 
