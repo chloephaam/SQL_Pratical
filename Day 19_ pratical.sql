@@ -143,3 +143,5 @@ where not
   orderdate is null or trim(coalesce(orderdate::text, '')) = '')
 
 select * from public.sales_dataset_rfm_prj_clean
+
+
