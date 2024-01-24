@@ -49,7 +49,7 @@ select * from oldest_customers)
 group by
   tag;
 
---4
+--4 Thống kê top 5 sản phẩm có lợi nhuận cao nhất từng tháng
 with ranked_products as (
 select format_date('%Y-%m', o.created_at) as month_year,
 oi.product_id,
@@ -71,10 +71,10 @@ month_year, oi.product_id, product_name)
 select month_year, product_id, product_name, sales, cost, profit, rank_per_month
 from ranked_products
 where rank_per_month <= 5
-limit 5
 
 
----5
+---5 Thống kê tổng doanh thu theo ngày của từng danh mục sản phẩm (category) trong 3 tháng qua ( giả sử ngày hiện tại là 15/4/2022)
+
 with revenue_by_category as (
 select date_trunc(date(o.created_at), month) as month_start,
 p.category as product_category,
